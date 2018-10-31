@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Create extends Component {
-    state = {  }
+class PostsCreate extends Component {
     render() {
         return (
             <div>Create post</div>
@@ -10,4 +9,4 @@ class Create extends Component {
     }
 }
 
-export default Create;
+export default PostsCreate;

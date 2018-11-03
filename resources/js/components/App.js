@@ -19,7 +19,7 @@ class App extends Component {
                     <div>
                         <Switch>
                             <Route exact path="/posts/create" component={PostsCreate} />
-                            <Route exact path="/posts" component={PostsIndex} />
+                            <Route exact path="/posts/" component={PostsIndex} />
                         </Switch>
                     </div>
                 </BrowserRouter>
@@ -29,3 +29,5 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+// Use synchronizer tokens for auth

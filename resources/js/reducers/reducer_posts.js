@@ -9,6 +9,11 @@ export default function (state = {}, action) {
                 data: _.mapKeys(action.payload.data.data, 'id')
             };
 
+        case 'create_post':
+            return {
+                ...state,
+                data
+            }
         default:
             return state;
     }

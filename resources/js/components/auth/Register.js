@@ -54,14 +54,17 @@ class Register extends Component {
 function validate(values) {
     const errors = {};
 
-    if (!values.title || values.title.length < 3) {
-        errors.title = 'Enter a title that is at least 3 characters';
+    if (!values.name || values.name.length < 3) {
+        errors.name = 'Enter a name that is at least 3 characters';
     }
-    if (!values.categories) {
-        errors.categories = 'Enter some categories';
+    if (!values.email) {
+        errors.email = 'Enter a valid email';
     }
-    if (!values.content) {
-        errors.content = 'Enter some content please';
+    if (!values.password) {
+        errors.password = 'Enter a password with at least 6 characters';
+    }
+    if (values.password_confirmation !== values.password) {
+        errors.password_confirmation = 'Your passwords do not match';
     }
 
     return errors;

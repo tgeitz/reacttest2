@@ -26,6 +26,9 @@ class Index extends Component {
                     <Link to="/posts/create" className="btn btn-primary">
                         Create Posts
                     </Link>
+                    <Link to="/register" className="btn btn-primary">
+                        Register
+                    </Link>
                 </div>
                 <h3>Posts</h3>
                 <ul className="list-group">

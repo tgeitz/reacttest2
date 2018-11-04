@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 
 import reducers from '../reducers/reducers';
+import Register from './auth/Register';
 import PostsIndex from './posts/Index';
 import PostsCreate from './posts/Create';
 
@@ -18,6 +19,7 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Switch>
+                            <Route exact path="/register" component={Register} />
                             <Route exact path="/posts/create" component={PostsCreate} />
                             <Route exact path="/posts/" component={PostsIndex} />
                         </Switch>

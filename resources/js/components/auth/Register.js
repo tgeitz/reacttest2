@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'react-form';
+import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
+
+import { registerUser } from "../../actions";
 
 class Register extends Component {
     renderField(field) {
@@ -19,6 +21,11 @@ class Register extends Component {
             </div>
         )
     }
+
+    onSubmit(values) {
+        this.props.registerUser(values);
+    }
+
     render() {
         const { handleSubmit } = this.props;
 

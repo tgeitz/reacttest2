@@ -3,7 +3,7 @@ export default function (state = {}, action) {
         case 'register_user':
             return {
                 ...state,
-                data
+                data:action.payload.data
             }
     
         default:

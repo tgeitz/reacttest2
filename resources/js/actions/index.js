@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const ROOT_URL = 'http://reacttest2.test/';
 const ROOT_API_URL = 'http://reacttest2.test/api';
 const API_KEY = '?key=1234';
 

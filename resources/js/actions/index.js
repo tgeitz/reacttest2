@@ -9,12 +9,17 @@ const API_KEY = '?key=1234';
 // ============================================================
 
 export function registerUser(values) {
+    console.log(444);
     const request = axios.post(`${ROOT_URL}/register`, values);
     return {
         type: 'register_user',
         payload: request
     }
 }
+
+// ============================================================
+// Posts
+// ============================================================
 
 export function fetchPosts() {
     const request = axios.get(`${ROOT_API_URL}/posts${API_KEY}`);

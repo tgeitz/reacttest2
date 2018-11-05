@@ -9,6 +9,7 @@ import reducers from '../reducers/reducers';
 import Register from './auth/Register';
 import PostsIndex from './posts/Index';
 import PostsCreate from './posts/Create';
+import { CssBaseline } from '@material-ui/core';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -17,13 +18,14 @@ class App extends Component {
         return (
             <Provider store={createStoreWithMiddleware(reducers)}>
                 <BrowserRouter>
-                    <div>
+                    <React.Fragment>
+                        <CssBaseline />
                         <Switch>
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/posts/create" component={PostsCreate} />
                             <Route exact path="/posts/" component={PostsIndex} />
                         </Switch>
-                    </div>
+                    </React.Fragment>
                 </BrowserRouter>
             </Provider>
         );

@@ -68,7 +68,8 @@ function validate(values) {
     if (!values.name || values.name.length < 3) {
         errors.name = 'Enter a name that is at least 3 characters';
     }
-    if (!values.email) {
+    if (!values.email &&
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Enter a valid email';
     }
     if (!values.password) {

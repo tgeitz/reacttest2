@@ -14,7 +14,7 @@ class Register extends Component {
                 <label>{ field.label }</label>
                 <input
                     className="form-control"
-                    type="text"
+                    type={field.type}
                     {...field.input}
                 />
                 {touched ? error : ''}
@@ -34,21 +34,25 @@ class Register extends Component {
                 <Field
                     label="Name"
                     name="name"
+                    type="text"
                     component={this.renderField} 
                 />
                 <Field
                     label="Email"
                     name="email"
+                    type="text"
                     component={this.renderField} 
                 />
                 <Field
                     label="Password"
                     name="password"
+                    type="password"
                     component={this.renderField} 
                 />
                 <Field
                     label="Confirm Password"
                     name="password_confirmation"
+                    type="password"
                     component={this.renderField} 
                 />
                 <button type="submit" className="btn btn-primary">Create</button>

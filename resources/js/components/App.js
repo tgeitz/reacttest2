@@ -19,7 +19,6 @@ const styles = theme => ({
 
 class App extends Component {
     render() {
-        console.log('asdf');
         return (
             <Provider store={createStoreWithMiddleware(reducers)}>
                 <BrowserRouter>

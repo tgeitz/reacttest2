@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
-import compose from 'recompose/compose';
+import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
-import Avatar from '@material-ui/core/Avatar';
-import LockIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { TextField } from '@material-ui/core';
 
 import { registerUser } from "../../actions";
 
@@ -48,29 +45,22 @@ const styles = theme => ({
 });
 
 class Register extends Component {
-    renderField(field) {
-        const { meta: { touched, error } } = field;
-        const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+    renderField({
+        input,
+        label,
+        type,
+        meta: { touched, error }
+    }) {
         return (
-            <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor={field.type}>{field.label}</InputLabel>
-                <Input 
-                    name={field.name}
-                    type={field.type}
-                    autoFocus={field.autoFocus}
-                    {...field.input}
+            <FormControl margin="normal" fullWidth>
+                <TextField
+                    label={label}
+                    type={type}
+                    error={touched && typeof error === 'string'}
+                    helperText={touched ? error : ''}
+                    {...input}
                 />
-                {touched ? error : ''}
             </FormControl>
-            // <div className={className}>
-            //     <label>{field.label}</label>
-            //     <input
-            //         className="form-control"
-            //         type={field.type}
-            //         {...field.input}
-            //     />
-            //     {touched ? error : ''}
-            // </div>
         )
     }
 
@@ -85,11 +75,8 @@ class Register extends Component {
             <React.Fragment>
                 <main className={classes.layout}>
                     <Paper className={classes.paper}>
-                        <Avatar className={classes.avatar}>
-                            <LockIcon />
-                        </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Register
                         </Typography>
                         <form className={classes.form} onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                             <Field
@@ -146,11 +133,11 @@ function validate(values) {
     if (!values.name || values.name.length < 3) {
         errors.name = 'Enter a name that is at least 3 characters';
     }
-    if (!values.email &&
+    if (!values.email ||
         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Enter a valid email';
     }
-    if (!values.password) {
+    if (!values.password || values.password.length < 6) {
         errors.password = 'Enter a password with at least 6 characters';
     }
     if (values.password_confirmation !== values.password) {
@@ -162,9 +149,9 @@ function validate(values) {
 
 export default compose(
     withStyles(styles, { name: 'Register' }),
+    connect(null, { registerUser }),
     reduxForm({
         validate,
         form: 'RegisterUserForm'
     }),
-    connect(null, { registerUser })
 )(Register);

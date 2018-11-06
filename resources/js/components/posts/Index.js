@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchPosts } from '../../actions/index';
+import LogoutButton from '../auth/LogoutButton';
 
 class Index extends Component {
     componentDidMount() {
@@ -23,6 +24,7 @@ class Index extends Component {
         return (
             <div>
                 <div className="text-xs-right">
+                    <LogoutButton />
                     <Link to="/posts/create" className="btn btn-primary">
                         Create Posts
                     </Link>

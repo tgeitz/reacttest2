@@ -11,7 +11,7 @@ const styles = theme => ({
 
 class LogoutButton extends Component {
     handleClick() {
-        return logoutUser();
+        return this.props.logoutUser();
     }
     render() {
         const { classes } = this.props;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Button } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import { logoutUser } from '../../actions';
 
@@ -19,8 +20,7 @@ class LogoutButton extends Component {
         return (
             <React.Fragment>
                 <Button
-                    onClick={this.handleClick()}
-                    type="submit"
+                    onClick={this.handleClick.bind(this)}
                     color="primary"
                 >
                     Logout

@@ -6,6 +6,7 @@ import promise from 'redux-promise';
 
 import reducers from '../reducers/reducers';
 import Register from './auth/Register';
+import Login from './auth/Login';
 import PostsIndex from './posts/Index';
 import PostsCreate from './posts/Create';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,6 +26,7 @@ class App extends Component {
                     <React.Fragment>
                         <Switch>
                             <Route exact path="/register" component={Register} />
+                            <Route exact path="/login" component={Login} />
                             <Route exact path="/posts/create" component={PostsCreate} />
                             <Route exact path="/posts/" component={PostsIndex} />
                         </Switch>

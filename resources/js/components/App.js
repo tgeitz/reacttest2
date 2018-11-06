@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
+import thunk from 'redux-thunk';
 
 import reducers from '../reducers/reducers';
 import Register from './auth/Register';
@@ -12,7 +13,7 @@ import PostsCreate from './posts/Create';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
 
 const styles = theme => ({
 

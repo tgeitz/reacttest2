@@ -7,9 +7,10 @@ import {
     Paper,
     Typography,
     FormControl,
-    TextField
+    TextField,
+    Button
 } from '@material-ui/core';
-import {withStyles} from '@material-ui/core/styles/withStyles';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import { loginUser } from '../../actions';
 
@@ -101,7 +102,9 @@ class Login extends Component {
                             />
                             <Field 
                                 label="Remember me"
-                                component="input" type="checkbox"
+                                name="remember"
+                                component="input" 
+                                type="checkbox"
                             />
                             <Button
                                 type="submit"

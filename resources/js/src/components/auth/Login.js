@@ -48,7 +48,7 @@ const styles = theme => ({
 
 class Login extends Component {
     componentDidMount() {
-        console.log(this.state);
+        console.log(this.props);
         console.log('state above');
     }
     renderField({
@@ -135,8 +135,9 @@ class Login extends Component {
 }
 
 function mapStateToProps(state){
+    console.log(state);
     return {
-        user: state.user
+        user: state.auth
     }
 }
 

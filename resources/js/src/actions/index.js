@@ -21,7 +21,8 @@ export function handleLogin(values) {
         return dispatch(loginUser(values)
         ).then(() => 
         // reload app for authentication to go through
-        window.location.href = `${ROOT_URL}/posts`
+        // window.location.href = `${ROOT_URL}/posts`
+        console.log('asdf')
         );
     }
 }

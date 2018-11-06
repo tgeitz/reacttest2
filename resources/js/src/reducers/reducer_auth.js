@@ -3,19 +3,21 @@ export default function (state = {}, action) {
         case 'register_user':
             return {
                 ...state,
-                data: action.payload.data
+                currentUser: action.payload.data
             }
 
         case 'login_user':
+            console.log(action.payload.data);
+            console.log('payload above');
             return {
                 ...state,
-                data: action.payload.data
+                currentUser: action.payload.data
             }
 
         case 'logout_user':
             return {
                 ...state,
-                data: action.payload.data
+                currentUser: {}
             }
     
         default:

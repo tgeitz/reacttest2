@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import { loginUser } from '../../actions';
+import { handleLogin } from '../../actions';
 
 const styles = theme => ({
     layout: {
@@ -47,6 +47,10 @@ const styles = theme => ({
 });
 
 class Login extends Component {
+    componentDidMount() {
+        console.log(this.state);
+        console.log('state above');
+    }
     renderField({
         input,
         label,
@@ -74,7 +78,7 @@ class Login extends Component {
     }
 
     onSubmit(values) {
-        this.props.loginUser(values);
+        this.props.handleLogin(values);
     }
 
     render() {
@@ -130,9 +134,15 @@ class Login extends Component {
     }
 }
 
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+}
+
 export default compose(
     withStyles(styles, { name: 'Login' }),
-    connect(null, { loginUser }),
+    connect(mapStateToProps, { handleLogin }),
     reduxForm({
         form: 'LoginUserForm'
     }),

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://reacttest2.test/';
+const ROOT_URL = 'http://reacttest2.test';
 const ROOT_API_URL = 'http://reacttest2.test/api';
 const API_KEY = '?key=1234';
 
@@ -16,8 +16,19 @@ export function registerUser(values) {
     }
 }
 
+export function handleLogin(values) {
+    return (dispatch) => {
+        return dispatch(loginUser(values)
+        ).then(() => 
+        // reload app for authentication to go through
+        window.location.href = `${ROOT_URL}/posts`
+        );
+    }
+}
+
 export function loginUser(values) {
     const request = axios.post(`${ROOT_URL}/login`, values);
+
     return {
         type: 'login_user',
         payload: request

@@ -53,4 +53,19 @@ class LoginController extends Controller
         return $this->authenticated($request, $this->guard()->user())
                 ?: $request->user()->toArray();
     }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: response('Logged out', 200);
+    }
 }

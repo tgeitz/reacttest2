@@ -16,6 +16,14 @@ export function registerUser(values) {
     }
 }
 
+export function loginUser(values) {
+    const request = axios.post(`${ROOT_URL}/login`, values);
+    return {
+        type: 'login_user',
+        payload: request
+    }
+}
+
 export function logoutUser() {
     const request = axios.post(`${ROOT_URL}/logout`);
     return {

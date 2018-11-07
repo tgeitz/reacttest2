@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
 import {
     Paper,
@@ -81,12 +81,21 @@ class Login extends Component {
         this.props.handleLogin(values);
     }
 
+    redirectIfLoggedIn() {
+        if (this.props.auth.isAuthenticated) {
+            return (
+                <Redirect to="/posts" />
+            )
+        }
+    }
+
     render() {
         const { handleSubmit, classes } = this.props;
 
         return (
             <React.Fragment>
                 <main className={classes.layout}>
+                { this.redirectIfLoggedIn() }
                     <Paper className={classes.paper}>
                         <Typography component="h1" variant="h5">
                             Login
@@ -137,7 +146,7 @@ class Login extends Component {
 function mapStateToProps(state){
     console.log(state);
     return {
-        user: state.auth
+        auth: state.auth
     }
 }
 

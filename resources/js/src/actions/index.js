@@ -45,7 +45,7 @@ export function logoutUser() {
 
 export function getCurrentUserData() {
     return (dispatch, getState) => {
-        if (!getState().auth.isAuthenticated) {
+        if (!getState().auth.isAuthenticated && !getState().auth.hasAttemptedAuth) {
             return dispatch({ type: 'logout_user' })
         }
 

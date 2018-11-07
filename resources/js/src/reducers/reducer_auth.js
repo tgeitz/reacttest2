@@ -6,14 +6,16 @@ export default function (state = {}, action) {
             return {
                 ...state,
                 currentUser: action.payload.data,
-                isAuthenticated: true
+                isAuthenticated: true,
+                hasAttemptedAuth: true
             }
 
         case 'login_user':
             return {
                 ...state,
                 currentUser: action.payload.data,
-                isAuthenticated: true
+                isAuthenticated: true,
+                hasAttemptedAuth: true
             }
 
         case 'logout_user':
@@ -21,7 +23,8 @@ export default function (state = {}, action) {
             return {
                 ...state,
                 currentUser: {},
-                isAuthenticated: false
+                isAuthenticated: false,
+                hasAttemptedAuth: true
             }
 
         case 'set_current_user':
@@ -30,7 +33,8 @@ export default function (state = {}, action) {
             return {
                 ...state,
                 currentUser: action.payload.data,
-                isAuthenticated: true
+                isAuthenticated: true,
+                hasAttemptedAuth: true
             }
     
         default:

@@ -1,6 +1,6 @@
 export default {
     posts: {},
     auth: {
-        hasAttemptedAuth: false
+        hasBeenChecked: false
     }
 }

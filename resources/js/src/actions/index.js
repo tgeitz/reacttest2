@@ -39,14 +39,14 @@ export function loginUser(values) {
 export function logoutUser() {
     const request = axios.post(`${ROOT_URL}/logout`);
     return {
-        type: 'logout_user',
+        type: 'flush_user',
     }
 }
 
 export function getCurrentUserData() {
     return (dispatch, getState) => {
-        if (!getState().auth.isAuthenticated && !getState().auth.hasAttemptedAuth) {
-            return dispatch({ type: 'logout_user' })
+        if (!getState().auth.isAuthenticated && !getState().auth.hasBeenChecked) {
+            return dispatch({ type: 'flush_user' })
         }
 
         axios.get(`${ROOT_URL}/user`)
@@ -58,7 +58,7 @@ export function getCurrentUserData() {
             .catch(error => {
                 console.log('logging user out');
                 console.log(error)
-                return dispatch({ type: 'logout_user' })
+                return dispatch({ type: 'flush_user' })
             });
     }
 }

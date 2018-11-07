@@ -7,7 +7,7 @@ export default function (state = {}, action) {
                 ...state,
                 currentUser: action.payload.data,
                 isAuthenticated: true,
-                hasAttemptedAuth: true
+                hasBeenChecked: true
             }
 
         case 'login_user':
@@ -15,16 +15,16 @@ export default function (state = {}, action) {
                 ...state,
                 currentUser: action.payload.data,
                 isAuthenticated: true,
-                hasAttemptedAuth: true
+                hasBeenChecked: true
             }
 
-        case 'logout_user':
+        case 'flush_user':
             console.log('user logged out');
             return {
                 ...state,
                 currentUser: {},
                 isAuthenticated: false,
-                hasAttemptedAuth: true
+                hasBeenChecked: true
             }
 
         case 'set_current_user':
@@ -34,7 +34,7 @@ export default function (state = {}, action) {
                 ...state,
                 currentUser: action.payload.data,
                 isAuthenticated: true,
-                hasAttemptedAuth: true
+                hasBeenChecked: true
             }
     
         default:

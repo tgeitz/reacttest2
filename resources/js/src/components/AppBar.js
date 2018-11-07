@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { getCurrentUserData } from '../actions'
+import LogoutButton from './auth/LogoutButton';
 
 const styles = {
     root: {
@@ -31,7 +32,29 @@ class AppBarTop extends Component {
         console.log('getting user data in appbar');
         this.props.getCurrentUserData();
     }
-    
+
+    renderAuth() {
+        const { classes } = this.props;
+
+        if (!this.props.auth.isAuthenticated) {
+            return (
+                <div>
+                    <Button color="inherit" component={Link} to="/register">Register</Button>
+                    <Button color="inherit" component={Link} to="/login">Login</Button>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <Typography variant="h6" color="inherit">
+                        Welcome, {this.props.auth.currentUser.name}!
+                    </Typography>
+                    {<LogoutButton color="inherit" />}
+                </div>
+            )
+        }
+    }
+
     render() {
         console.log('app bar rendering');
         const { classes } = this.props;
@@ -46,7 +69,7 @@ class AppBarTop extends Component {
                         <Typography variant="h6" color="inherit" className={classes.grow}>
                             News
                         </Typography>
-                        <Button color="inherit">Login</Button>
+                        {this.renderAuth()}
                     </Toolbar>
                 </AppBar>
             </div>

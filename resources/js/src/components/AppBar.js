@@ -28,11 +28,6 @@ const styles = {
 
 
 class AppBarTop extends Component {
-    componentDidMount() {
-        console.log('getting user data in appbar');
-        this.props.getCurrentUserData();
-    }
-
     renderAuth() {
         const { classes } = this.props;
 

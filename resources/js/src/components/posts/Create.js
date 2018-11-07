@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import { createPost } from '../../actions';
 
 class PostsCreate extends Component {
+    componentDidMount() {
+        console.log('create post');
+    }
     renderField(field) {
         const { meta: { touched, error } } = field;
         const className = `form-group ${touched && error ? 'has-danger' : ''}`;
@@ -28,6 +31,7 @@ class PostsCreate extends Component {
 
     render() {
         const { handleSubmit } = this.props;
+        console.log('create post render');
 
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>

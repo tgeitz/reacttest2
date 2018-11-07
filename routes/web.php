@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +17,9 @@
 // Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('user', function() {
+    return Auth::check() ? Auth::user()->toJson() : response('Unauthorized', 403);
+});
 
 // Registration Routes...
 Route::post('register', 'Auth\RegisterController@register');

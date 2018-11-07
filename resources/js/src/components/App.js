@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withStyles } from '@material-ui/core/styles';
 
+import AppBarTop from './AppBar';
 import Register from './auth/Register';
 import Login from './auth/Login';
 import PostsIndex from './posts/Index';
 import PostsCreate from './posts/Create';
-import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../../withRoot';
-import AppBarTop from './AppBar';
+import { getCurrentUserData } from '../actions';
 
 const styles = theme => ({
 
 });
 
 class App extends Component {
+    componentDidMount() {
+        console.log('getting user data in app root');
+        this.props.getCurrentUserData();
+    }
+
     render() {
         return (
             <BrowserRouter>
@@ -31,6 +39,17 @@ class App extends Component {
     }
 }
 
-export default withRoot(withStyles(styles)(App));
+function mapStateToProps(state) {
+    return {
+        auth: state.auth
+    }
+}
+
+export default withRoot(
+    compose(
+        connect(mapStateToProps, { getCurrentUserData }),
+        withStyles(styles, { name: 'App' }),
+    )(App)
+);
 
 // Use synchronizer tokens for auth

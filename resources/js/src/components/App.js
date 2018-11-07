@@ -12,7 +12,7 @@ import PostsIndex from './posts/Index';
 import PostsCreate from './posts/Create';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../../withRoot';
-import AppBar from './AppBar';
+import AppBarTop from './AppBar';
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
 
@@ -26,7 +26,7 @@ class App extends Component {
             <Provider store={createStoreWithMiddleware(reducers)}>
                 <BrowserRouter>
                     <React.Fragment>
-                        <AppBar />
+                        <AppBarTop />
                         <Switch>
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/login" component={Login} />

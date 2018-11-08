@@ -51,13 +51,9 @@ export function getCurrentUserData() {
 
         axios.get(`${ROOT_URL}/user`)
             .then((response) => {
-                console.log(response);
-                console.log('gcud response above');
                 return dispatch({ type: 'set_current_user', payload: response })
             })
             .catch(error => {
-                console.log('logging user out');
-                console.log(error)
                 return dispatch({ type: 'flush_user' })
             });
     }
@@ -68,25 +64,15 @@ export function getCurrentUserData() {
 // ============================================================
 
 export function fetchPosts() {
-    // const request = axios.get(`${ROOT_API_URL}/posts${API_KEY}`);
-    console.log('fetch posts action');
-
     return (dispatch) => {
         axios.get(`${ROOT_API_URL}/posts${API_KEY}`)
             .then(response => {
-                console.log(response);
-                console.log('fetchposts request above');
                 return dispatch({
                     type: 'fetch_posts',
                     payload: response
                 });
             });
     }
-
-    // return {
-    //     type: 'fetch_posts',
-    //     payload: request
-    // }
 }
 
 export function createPost(values) {

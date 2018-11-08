@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -68,12 +68,21 @@ class Register extends Component {
         this.props.registerUser(values);
     }
 
+    redirectIfLoggedIn() {
+        if (this.props.auth.isAuthenticated) {
+            return (
+                <Redirect to="/posts" />
+            )
+        }
+    }
+
     render() {
         const { handleSubmit, classes } = this.props;
 
         return (
             <React.Fragment>
                 <main className={classes.layout}>
+                {this.redirectIfLoggedIn()}
                     <Paper className={classes.paper}>
                         <Typography component="h1" variant="h5">
                             Register
@@ -147,9 +156,15 @@ function validate(values) {
     return errors;
 }
 
+function mapStateToProps(state){
+    return {
+        auth: state.auth
+    }
+}
+
 export default compose(
     withStyles(styles, { name: 'Register' }),
-    connect(null, { registerUser }),
+    connect(mapStateToProps, { registerUser }),
     reduxForm({
         validate,
         form: 'RegisterUserForm'

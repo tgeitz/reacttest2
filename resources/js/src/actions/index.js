@@ -72,7 +72,6 @@ export function fetchPosts() {
     console.log('fetch posts action');
 
     return (dispatch) => {
-        dispatch(getCurrentUserData());
         axios.get(`${ROOT_API_URL}/posts${API_KEY}`)
             .then(response => {
                 console.log(response);

@@ -16,16 +16,6 @@ export function registerUser(values) {
     }
 }
 
-export function handleLogin(values) {
-    return (dispatch) => {
-        return dispatch(loginUser(values)
-        ).then(() =>
-            // reload app for authentication to go through
-            window.location.href = `${ROOT_URL}/posts`
-        );
-    }
-}
-
 export function loginUser(values) {
     const request = axios.post(`${ROOT_URL}/login`, values);
 
@@ -38,7 +28,7 @@ export function loginUser(values) {
 export function logoutUser() {
     return (dispatch) => {
         axios.post(`${ROOT_URL}/logout`);
-        window.location.href = `${ROOT_URL}/posts`;
+        // window.location.href = `${ROOT_URL}/posts`;
 
         return dispatch({type: 'flush_user'});
     }
@@ -46,19 +36,15 @@ export function logoutUser() {
 
 export function getCurrentUserData() {
     return (dispatch, getState) => {
-        if (!getState().auth.isAuthenticated && !getState().auth.hasBeenChecked) {
-            console.log('has not been checked');
+        if (!getState().auth.isAuthenticated && getState().auth.hasBeenChecked) {
             return dispatch({ type: 'flush_user' })
         }
 
         axios.get(`${ROOT_URL}/user`)
             .then((response) => {
-                console.log('cool');
-                console.log(response);
                 return dispatch({ type: 'set_current_user', payload: response })
             })
             .catch(error => {
-                console.log('uh oh');
                 return dispatch({ type: 'flush_user' })
             });
     }

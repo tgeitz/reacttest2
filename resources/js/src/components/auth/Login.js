@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import { handleLogin } from '../../actions';
+import { loginUser } from '../../actions';
 
 const styles = theme => ({
     layout: {
@@ -74,7 +74,7 @@ class Login extends Component {
     }
 
     onSubmit(values) {
-        this.props.handleLogin(values);
+        this.props.loginUser(values);
     }
 
     redirectIfLoggedIn() {
@@ -140,7 +140,6 @@ class Login extends Component {
 }
 
 function mapStateToProps(state){
-    console.log(state);
     return {
         auth: state.auth
     }
@@ -148,7 +147,7 @@ function mapStateToProps(state){
 
 export default compose(
     withStyles(styles, { name: 'Login' }),
-    connect(mapStateToProps, { handleLogin }),
+    connect(mapStateToProps, { loginUser }),
     reduxForm({
         form: 'LoginUserForm'
     }),

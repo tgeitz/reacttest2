@@ -8,7 +8,6 @@ import LogoutButton from '../auth/LogoutButton';
 class Index extends Component {
     componentDidMount() {
         this.props.fetchPosts();
-        console.log('post index');
     }
 
     renderPosts() {
@@ -22,8 +21,6 @@ class Index extends Component {
     }
     
     render() {
-        console.log(this.props.auth);
-        console.log('state above')
         return (
             <div>
                 <div className="text-xs-right">

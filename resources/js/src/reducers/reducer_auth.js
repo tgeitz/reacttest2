@@ -17,7 +17,6 @@ export default function (state = {}, action) {
             }
 
         case 'flush_user':
-            console.log('user logged out');
             return {
                 ...state,
                 currentUser: {},
@@ -26,8 +25,6 @@ export default function (state = {}, action) {
             }
 
         case 'set_current_user':
-            console.log(action.payload);
-            console.log('current user payload above');
             return {
                 ...state,
                 currentUser: action.payload.data,

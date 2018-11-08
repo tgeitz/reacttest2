@@ -18,7 +18,6 @@ const styles = theme => ({
 
 class App extends Component {
     componentDidMount() {
-        console.log('getting user data in app root');
         this.props.getCurrentUserData();
     }
 

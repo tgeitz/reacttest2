@@ -22,7 +22,8 @@ class Index extends Component {
     }
     
     render() {
-        console.log('post index render');
+        console.log(this.props.auth);
+        console.log('state above')
         return (
             <div>
                 <div className="text-xs-right">
@@ -44,7 +45,7 @@ class Index extends Component {
 }
 
 function mapStateToProps(state) {
-    return { posts: state.posts }
+    return { posts: state.posts, auth: state.auth }
 }
 
 export default connect(mapStateToProps, { fetchPosts })(Index);

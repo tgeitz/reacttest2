@@ -1,6 +1,4 @@
 export default function (state = {}, action) {
-    console.log(state);
-    console.log('reducer pre state above');
     switch (action.type) {
         case 'register_user':
             return {

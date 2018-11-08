@@ -51,7 +51,6 @@ class AppBarTop extends Component {
     }
 
     render() {
-        console.log('app bar rendering');
         const { classes } = this.props;
 
         return (

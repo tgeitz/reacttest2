@@ -41,10 +41,10 @@ class AppBarTop extends Component {
         } else {
             return (
                 <div>
-                    <Typography variant="h6" color="inherit">
+                    <LogoutButton color="inherit" />
+                    <Typography variant="h6" align="right" color="inherit">
                         Welcome, {this.props.auth.currentUser.name}!
                     </Typography>
-                    {<LogoutButton color="inherit" />}
                 </div>
             )
         }
@@ -60,9 +60,11 @@ class AppBarTop extends Component {
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="h6" color="inherit" className={classes.grow}>
-                            News
-                        </Typography>
+                        <Button color="inherit" align="left" component={Link} to="/posts">
+                            <Typography variant="h6" color="inherit" className={classes.grow}>
+                                Posts
+                            </Typography>
+                        </Button>
                         {this.renderAuth()}
                     </Toolbar>
                 </AppBar>

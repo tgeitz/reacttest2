@@ -21,7 +21,7 @@ class LogoutButton extends Component {
             <React.Fragment>
                 <Button
                     onClick={this.handleClick.bind(this)}
-                    color="primary"
+                    color={this.props.color}
                 >
                     Logout
                 </Button>

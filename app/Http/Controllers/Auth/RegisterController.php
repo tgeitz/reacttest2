@@ -21,25 +21,6 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
     /**
      * Handle a registration request for the application.
      *
@@ -52,10 +33,9 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        Auth::login($user);
 
-        return $this->registered($request, $user)
-                        ?: $request->user()->toArray();
+        return $user->toArray();
     }
 
     /**

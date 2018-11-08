@@ -27,10 +27,10 @@ export function loginUser(values) {
 
 export function logoutUser() {
     return (dispatch) => {
-        axios.post(`${ROOT_URL}/logout`);
-        // window.location.href = `${ROOT_URL}/posts`;
-
-        return dispatch({type: 'flush_user'});
+        axios.post(`${ROOT_URL}/logout`)
+            .then((response) => {
+                return dispatch({type: 'flush_user'});
+            });
     }
 }
 

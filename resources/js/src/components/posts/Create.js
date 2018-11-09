@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { createPost } from '../../actions';
 
@@ -26,11 +26,20 @@ class PostsCreate extends Component {
         this.props.createPost(values);
     }
 
+    redirectIfNotLoggedIn() {
+        if (!this.props.auth.isAuthenticated) {
+            return (
+                <Redirect to="/posts" />
+            )
+        }
+    }
+
     render() {
         const { handleSubmit } = this.props;
 
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                {this.redirectIfNotLoggedIn()}
                 <Field
                     label="Title"
                     name="title"
@@ -69,9 +78,15 @@ function validate(values) {
     return errors;
 }
 
+function mapStateToProps(state) {
+    return {
+        auth: state.auth
+    }
+}
+
 export default reduxForm({
     validate,
     form: 'PostsNewForm'
 })(
-    connect(null, { createPost })(PostsCreate)
+    connect(mapStateToProps, { createPost })(PostsCreate)
 );
